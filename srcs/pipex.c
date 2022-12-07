@@ -1,41 +1,32 @@
 #include "pipex.h"
 
-int		main(int argc, char	*argv[])
+int		main(int argc, char	*argv[], char *envp[])
 {
-	int	fd[2];
-	int	pfd[2];
+	int	infd;
+	int	outfd;
 
 	if (argc != 5)
 		exit_message("Invalid number of arguments.");
-	fd[0] = open(argv[1], O_RDONLY);
-	fd[1] = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0666);
-	if (fd[0] == -1)
-		exit_message("Couldn't open infile.");
-	if (pipe(pfd) < 0)
-		exit_message("Error reading proccess fd.");
-	fork_proccess(fd, pfd);
+	infd = open_file(argv[1], INFILE);
+	outfd = open_file(argv[4], OUTFILE);
+	dup2(infd, STDIN);
+	dup2(outfd, STDOUT);
+}
+
+int		open_file(char *filename, int mode)
+{
+	if (mode == INFILE)
+	{
+		if (access(filename, F_OK))
+			exit_message("Coudl't read infile.");
+		return(open(filename, O_RDONLY));
+	}
+	else
+		return(open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0664))
 }
 
 void	exit_message(char *msg)
 {
 	ft_printf("%s\n", msg);
 	exit();
-}
-
-void	fork_proccess(int *files, int *pipes)
-{
-	int	id;
-
-	id = fork();
-	if (id < 0)
-		exit_message("Fork error.");
-	else if (id == 0)
-	{
-		//processo filho
-	}
-	else
-	{
-		//processo pai
-		wait(NULL);
-	}
 }
