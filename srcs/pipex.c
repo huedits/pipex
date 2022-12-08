@@ -62,7 +62,7 @@ char	*get_path(char *cmd, char *env[])
 	if (!env[i])
 		return (cmd);
 	path = env[i] + 5;
-	while (path && ft_strchr(path, ':') > -1)
+	while (path && ft_strchrsize(path, ':') > -1)
 	{
 		dir = ft_strndup(path, ft_strchrsize(path, ':'));
 		bin = path_join(dir, cmd);
