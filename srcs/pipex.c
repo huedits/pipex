@@ -18,7 +18,7 @@ int		open_file(char *filename, int mode)
 	if (mode == INFILE)
 	{
 		if (access(filename, F_OK))
-			exit_message("Coudl't read infile.");
+			exit_message("Couldn't read infile.");
 		return(open(filename, O_RDONLY));
 	}
 	else
@@ -64,13 +64,13 @@ char	*get_path(char *cmd, char *env[])
 	path = env[i] + 5;
 	while (path && ft_strchr(path, ':') > -1)
 	{
-		dir = ft_strndup(path, ft_strchr(path, ':'));
+		dir = ft_strndup(path, ft_strchrsize(path, ':'));
 		bin = path_join(dir, cmd);
 		free(dir);
-		if (access(dir, F_OK))
-			return (dir);
+		if (access(bin, F_OK) == 0)
+			return (bin);
 		free(bin);
-		path += ft_strchr(path, ':') + 1;
+		path += ft_strchrsize(path, ':') + 1;
 	}
 	return (cmd);
 }

@@ -37,3 +37,15 @@ char	*ft_strndup (char *str, unsigned int n)
 	duped[n] = 0;
 	return (duped);
 }
+
+int		ft_strchrsize(char *str, char ch)
+{
+	int	count;
+
+	count = 0;
+	while (*str && *str != ch)
+		count++;
+	if (*str == ch)
+		return (count);
+	return (-1);
+}
