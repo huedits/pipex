@@ -6,6 +6,7 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include "ft_printf.h"
+# include "libft.h"
 
 # define STDIN 0
 # define STDOUT 1
@@ -21,5 +22,6 @@ char	*get_path(char *cmd, char *env[]);
 char	*ft_strndup (char *str, unsigned int n);
 char	*path_join (char *path, char *bin);
 int		ft_strchrsize(char *str, char ch);
+void	exec(char *cmd, char *env[]);
 
 #endif
