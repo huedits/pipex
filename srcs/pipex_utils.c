@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:32:06 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/12/13 18:32:07 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:50:13 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	exit_message(char *msg)
 {
 	ft_printf("%s\n", msg);
-	exit();
+	exit(1);
 }
 
 char	*path_join (char *path, char *bin)
@@ -24,7 +24,7 @@ char	*path_join (char *path, char *bin)
 	int		i;
 	int		j;
 
-	joined = malloc(sizeof(char) * (str_ichr(path, 0) + str_ichr(bin, 0) + 2));
+	joined = malloc(sizeof(char) * (ft_strchrsize(path, 0) + ft_strchrsize(bin, 0) + 2));
 	i = 0;
 	j = 0;
 	while (path[j])

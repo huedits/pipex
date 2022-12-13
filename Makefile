@@ -3,6 +3,7 @@ NAME = pipex
 INCLPATH = ./includes/
 SRCPATH = ./srcs/
 FTPATH = ./libft/libft.a
+PRINTPATH = ./ft_printf/libftprintf.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -14,11 +15,14 @@ SRCS = $(addprefix $(SRCPATH), \
 
 all: $(NAME)
 
-$(NAME): $(FTPATH)
-	$(CC) -I $(INCLPATH) $(CFLAGS) $(SRCS) $(FTPATH) -o $@
+$(NAME): $(FTPATH) $(PRINTPATH)
+	$(CC) -I $(INCLPATH) $(CFLAGS) $(SRCS) $(FTPATH) $(PRINTPATH) -o $@
 
 $(FTPATH):
 	$(MAKE) all -C ./libft/ && $(MAKE) clean -C ./libft/
+
+$(PRINTPATH):
+	$(MAKE) all -C ./ft_printf/ && $(MAKE) clean -C ./ft_printf/
 
 clean:
 	$(RM) *.o

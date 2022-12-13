@@ -29,7 +29,7 @@
 
 void    exit_message(char *msg);
 int		open_file(char *filename, int mode);
-void	fork_proccess(char *cmd, chr *env[], int infd);
+void	fork_proccess(char *cmd, char *env[], int infd);
 char	*get_path(char *cmd, char *env[]);
 char	*ft_strndup (char *str, unsigned int n);
 char	*path_join (char *path, char *bin);

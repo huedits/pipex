@@ -24,7 +24,7 @@ int		main(int argc, char	*argv[], char *envp[])
 	dup2(infd, STDIN);
 	dup2(outfd, STDOUT);
 	fork_proccess(argv[2], envp, infd);
-	exec(argv[3], env);
+	exec(argv[3], envp);
 	return (1);
 }
 
@@ -37,10 +37,10 @@ int		open_file(char *filename, int mode)
 		return(open(filename, O_RDONLY));
 	}
 	else
-		return(open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0664))
+		return(open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0664));
 }
 
-void	fork_proccess(char *cmd, chr *env[], int infd)
+void	fork_proccess(char *cmd, char *env[], int infd)
 {
 	pid_t	pid;
 	int		pipefd[2];
@@ -51,7 +51,7 @@ void	fork_proccess(char *cmd, chr *env[], int infd)
 	{
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT);
-		if (fdin == STDIN)
+		if (infd == STDIN)
 			exit(1);
 		else
 			exec(cmd, env);
@@ -99,7 +99,7 @@ void	exec(char *cmd, char *env[])
 	if (ft_strchrsize(args[0], '/') > -1)
 		path = args[0];
 	else
-		path = getPath(args[0], env);
+		path = get_path(args[0], env);
 	execve(path, args, env);
 	exit_message("Command not found.");
 }
