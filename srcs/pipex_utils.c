@@ -6,7 +6,7 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:32:06 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/12/13 18:50:13 by vimatheu         ###   ########.fr       */
+/*   Updated: 2022/12/13 21:47:36 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ int		ft_strchrsize(char *str, char ch)
 
 	count = 0;
 	while (*str && *str != ch)
+	{
 		count++;
+		str++;
+	}
 	if (*str == ch)
 		return (count);
 	return (-1);

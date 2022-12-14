@@ -29,6 +29,8 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(FTPATH)
+	$(RM) $(PRINTPATH)
 
 re: fclean all
 
