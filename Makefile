@@ -15,17 +15,19 @@ SRCS = $(addprefix $(SRCPATH), \
 
 all: $(NAME)
 
-$(NAME): $(FTPATH) $(PRINTPATH)
+$(NAME): $(FTPATH) $(PRINTPATH) $(SRCS)
 	$(CC) -I $(INCLPATH) $(CFLAGS) $(SRCS) $(FTPATH) $(PRINTPATH) -o $@
 
 $(FTPATH):
-	$(MAKE) all -C ./libft/ && $(MAKE) clean -C ./libft/
+	$(MAKE) all -C ./libft/
 
 $(PRINTPATH):
-	$(MAKE) all -C ./ft_printf/ && $(MAKE) clean -C ./ft_printf/
+	$(MAKE) all -C ./ft_printf/
 
 clean:
 	$(RM) *.o
+	$(MAKE) clean -C ./ft_printf/
+	$(MAKE) clean -C ./libft/
 
 fclean: clean
 	$(RM) $(NAME)
@@ -40,4 +42,4 @@ git: fclean
 	git commit -m "Automatic commit from Makefile."
 	git push
 
-.PHONY: all $(NAME) clean fclean re git
+.PHONY: all clean fclean re git
