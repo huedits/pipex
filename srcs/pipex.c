@@ -101,5 +101,5 @@ void	exec(char *cmd, char *env[])
 	else
 		path = get_path(args[0], env);
 	execve(path, args, env);
-	exit_message("Command not found.");
+	exit(127);
 }
