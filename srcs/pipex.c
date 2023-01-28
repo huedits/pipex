@@ -12,10 +12,11 @@
 
 #include "pipex.h"
 
-int		main(int argc, char	*argv[], char *envp[])
+int	main(int argc, char	*argv[], char *envp[])
 {
 	int	infd;
 	int	outfd;
+	int	fid;
 
 	if (argc == 5)
 	{
@@ -24,15 +25,18 @@ int		main(int argc, char	*argv[], char *envp[])
 		dup2(infd, STDIN);
 		dup2(outfd, STDOUT);
 		fork_proccess(argv[2], envp, infd);
-		exec(argv[3], envp);
+		fid = fork();
+		if (fid == 0)
+			exec(argv[3], envp);
+		else
+			waitpid(fid, NULL, 0);
 	}
 	else
 		write(STDERR, "Invalid number of arguments.\n", 29);
 	return (1);
-
 }
 
-int		open_file(char *filename, int mode)
+int	open_file(char *filename, int mode)
 {
 	if (mode == INFILE)
 	{
@@ -43,10 +47,10 @@ int		open_file(char *filename, int mode)
 			write(STDERR, ": No such file or directory\n", 28);
 			return (STDIN);
 		}
-		return(open(filename, O_RDONLY));
+		return (open(filename, O_RDONLY));
 	}
 	else
-		return(open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0664));
+		return (open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0664));
 }
 
 void	fork_proccess(char *cmd, char *env[], int infd)

@@ -6,19 +6,20 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:32:06 by vimatheu          #+#    #+#             */
-/*   Updated: 2023/01/28 15:34:12 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:14:04 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*path_join (char *path, char *bin)
+char	*path_join(char *path, char *bin)
 {
 	char	*joined;
 	int		i;
 	int		j;
 
-	joined = malloc(sizeof(char) * (ft_strchrsize(path, 0) + ft_strchrsize(bin, 0) + 2));
+	joined = malloc(sizeof(char) * (ft_strchrsize(path, 0) + \
+		ft_strchrsize(bin, 0) + 2));
 	i = 0;
 	j = 0;
 	while (path[j])
@@ -31,7 +32,7 @@ char	*path_join (char *path, char *bin)
 	return (joined);
 }
 
-char	*ft_strndup (char *str, unsigned int n)
+char	*ft_strndup(char *str, unsigned int n)
 {
 	char				*duped;
 	unsigned int		i;
@@ -44,7 +45,7 @@ char	*ft_strndup (char *str, unsigned int n)
 	return (duped);
 }
 
-int		ft_strchrsize(char *str, char ch)
+int	ft_strchrsize(char *str, char ch)
 {
 	int	count;
 
