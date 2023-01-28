@@ -103,6 +103,7 @@ void	exec(char *cmd, char *env[])
 {
 	char	**args;
 	char	*path;
+	int		i;
 
 	args = ft_split(cmd, ' ');
 	if (ft_strchrsize(args[0], '/') > -1)
@@ -111,5 +112,9 @@ void	exec(char *cmd, char *env[])
 		path = get_path(args[0], env);
 	execve(path, args, env);
 	write(STDERR, "pipex:", 6);
+	i = 0;
+	while (args[i])
+		free(args[i++]);
+	free(args);
 	exit(127);
 }
