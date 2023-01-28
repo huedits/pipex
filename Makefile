@@ -15,7 +15,7 @@ SRCS = $(addprefix $(SRCPATH), \
 all: $(NAME)
 
 $(NAME): $(FTPATH) $(SRCS)
-	$(CC) -I $(INCLPATH) $(CFLAGS) $(SRCS) $(FTPATH) -o $@
+	$(CC) -I $(INCLPATH) $(SRCS) $(FTPATH) -g3 -o $@ $(CFLAGS)
 
 $(FTPATH):
 	$(MAKE) all -C ./libft/
