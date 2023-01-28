@@ -120,7 +120,7 @@ void	exec(char *cmd, char *env[])
 	execve(path, args, env);
 	write(STDERR, "pipex: ", 7);
 	write(STDERR, cmd, ft_strchrsize(cmd, 0));
-	write(STDERR, ": Command not found.\n", 21);
+	write(STDERR, ": command not found\n", 20);
 	i = 0;
 	while (args[i])
 		free(args[i++]);
