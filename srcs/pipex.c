@@ -118,7 +118,9 @@ void	exec(char *cmd, char *env[])
 	else
 		path = get_path(args[0], env);
 	execve(path, args, env);
-	write(STDERR, "pipex:", 6);
+	write(STDERR, "pipex: ", 7);
+	write(STDERR, cmd, ft_strchrsize(cmd, 0));
+	write(STDERR, ": Command not found.\n", 21);
 	i = 0;
 	while (args[i])
 		free(args[i++]);
