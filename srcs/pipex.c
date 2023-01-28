@@ -32,8 +32,11 @@ int	main(int argc, char	*argv[], char *envp[])
 			waitpid(fid, NULL, 0);
 	}
 	else
+	{
 		write(STDERR, "Invalid number of arguments.\n", 29);
-	return (1);
+		return (1);
+	}
+	return (0);
 }
 
 int	open_file(char *filename, int mode)
