@@ -17,15 +17,19 @@ int		main(int argc, char	*argv[], char *envp[])
 	int	infd;
 	int	outfd;
 
-	if (argc != 5)
-		exit_message("Invalid number of arguments.");
-	infd = open_file(argv[1], INFILE);
-	outfd = open_file(argv[4], OUTFILE);
-	dup2(infd, STDIN);
-	dup2(outfd, STDOUT);
-	fork_proccess(argv[2], envp, infd);
-	exec(argv[3], envp);
+	if (argc == 5)
+	{
+		infd = open_file(argv[1], INFILE);
+		outfd = open_file(argv[4], OUTFILE);
+		dup2(infd, STDIN);
+		dup2(outfd, STDOUT);
+		fork_proccess(argv[2], envp, infd);
+		exec(argv[3], envp);
+	}
+	else
+		write(STDERR, "Invalid number of arguments.\n", 29);
 	return (1);
+
 }
 
 int		open_file(char *filename, int mode)
@@ -33,7 +37,12 @@ int		open_file(char *filename, int mode)
 	if (mode == INFILE)
 	{
 		if (access(filename, F_OK))
-			exit_message("Couldn't read infile.");
+		{
+			write(STDERR, "pipex: ", 7);
+			write(STDERR, filename, ft_strchrsize(filename, 0));
+			write(STDERR, ": No such file or directory\n", 28);
+			return (STDIN);
+		}
 		return(open(filename, O_RDONLY));
 	}
 	else
@@ -101,5 +110,6 @@ void	exec(char *cmd, char *env[])
 	else
 		path = get_path(args[0], env);
 	execve(path, args, env);
+	write(STDERR, "pipex:", 6);
 	exit(127);
 }

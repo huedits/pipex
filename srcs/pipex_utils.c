@@ -6,17 +6,11 @@
 /*   By: vimatheu <vimatheu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:32:06 by vimatheu          #+#    #+#             */
-/*   Updated: 2022/12/13 21:47:36 by vimatheu         ###   ########.fr       */
+/*   Updated: 2023/01/28 15:34:12 by vimatheu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	exit_message(char *msg)
-{
-	ft_printf("%s\n", msg);
-	exit(1);
-}
 
 char	*path_join (char *path, char *bin)
 {

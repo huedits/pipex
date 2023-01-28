@@ -15,7 +15,7 @@ This project has is still in development.
 - [ ] Fixing bugs.
 
 
-Obs: This project includes previous projects [libft](https://github.com/huedits/libft) and [ft_printf](https://github.com/huedits/ft_printf).
+Obs: This project includes previous project [libft](https://github.com/huedits/libft).
 
 **Source files:** \
 [pipex.c](srcs/pipex.c)
